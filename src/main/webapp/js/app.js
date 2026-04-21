@@ -13,7 +13,7 @@ formFanfic.addEventListener('submit', async (evento) => {
     estado.textContent = 'Importando datos desde AO3...';
 
     try {
-        const respuesta = await fetch('api/fanfics/importar', {
+        const respuesta = await fetch('/api/fanfics/importar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ async function cargarFanfics() {
     listaFanfics.innerHTML = '<div class="mensaje neutro">Cargando fanfics...</div>';
 
     try {
-        const respuesta = await fetch('api/fanfics');
+        const respuesta = await fetch('/api/fanfics');
         const datos = await respuesta.json();
 
         if (!respuesta.ok || !datos.ok) {
@@ -86,7 +86,7 @@ async function cargarEstadisticas() {
     stats.innerHTML = '<div class="mensaje neutro">Cargando estadisticas...</div>';
 
     try {
-        const respuesta = await fetch('api/estadisticas');
+        const respuesta = await fetch('/api/estadisticas');
         const datos = await respuesta.json();
 
         if (!respuesta.ok || !datos.ok) {
