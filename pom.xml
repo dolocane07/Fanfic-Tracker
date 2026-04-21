@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ejemplo</groupId>
-    <artifactId>buscador-contactos</artifactId>
+    <artifactId>ao3-fanfic-tracker</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
 
@@ -34,10 +34,16 @@
             <artifactId>gson</artifactId>
             <version>2.11.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.18.3</version>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>buscador-contactos</finalName>
+        <finalName>ao3-fanfic-tracker</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

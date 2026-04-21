@@ -1,18 +1,88 @@
 CREATE DATABASE IF NOT EXISTS bd1;
 USE bd1;
 
-CREATE TABLE IF NOT EXISTS contactos (
-    ide_con INT NOT NULL AUTO_INCREMENT,
-    nom_con VARCHAR(120) NOT NULL,
-    tlf_con INT NOT NULL,
-    PRIMARY KEY (ide_con)
+DROP TABLE IF EXISTS fanfic_category;
+DROP TABLE IF EXISTS fanfic_warning;
+DROP TABLE IF EXISTS fanfic_relationship;
+DROP TABLE IF EXISTS fanfic_fandom;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS warnings;
+DROP TABLE IF EXISTS relationships;
+DROP TABLE IF EXISTS fandoms;
+DROP TABLE IF EXISTS fanfics;
+
+CREATE TABLE fanfics (
+    id INT NOT NULL AUTO_INCREMENT,
+    ao3_url VARCHAR(500) NOT NULL,
+    ao3_work_id VARCHAR(50) NULL,
+    titulo VARCHAR(255) NOT NULL,
+    autor VARCHAR(255) NOT NULL,
+    ao3_rating VARCHAR(120) NOT NULL,
+    word_count INT NOT NULL DEFAULT 0,
+    finished_date DATE NOT NULL,
+    user_stars TINYINT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_fanfics_ao3_url (ao3_url),
+    UNIQUE KEY uk_fanfics_ao3_work_id (ao3_work_id)
 );
 
-INSERT INTO contactos (nom_con, tlf_con) VALUES
-('Ana López', 600111222),
-('Borja Martín', 611222333),
-('Carlos Pérez', 622333444),
-('Diana Ruiz', 633444555),
-('Elena Gómez', 644555666),
-('Francisco Torres', 655666777),
-('Gabriela Navarro', 666777888);
+CREATE TABLE fandoms (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_fandoms_name (name)
+);
+
+CREATE TABLE relationships (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_relationships_name (name)
+);
+
+CREATE TABLE warnings (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_warnings_name (name)
+);
+
+CREATE TABLE categories (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_categories_name (name)
+);
+
+CREATE TABLE fanfic_fandom (
+    fanfic_id INT NOT NULL,
+    fandom_id INT NOT NULL,
+    PRIMARY KEY (fanfic_id, fandom_id),
+    CONSTRAINT fk_fanfic_fandom_fanfic FOREIGN KEY (fanfic_id) REFERENCES fanfics (id) ON DELETE CASCADE,
+    CONSTRAINT fk_fanfic_fandom_fandom FOREIGN KEY (fandom_id) REFERENCES fandoms (id) ON DELETE CASCADE
+);
+
+CREATE TABLE fanfic_relationship (
+    fanfic_id INT NOT NULL,
+    relationship_id INT NOT NULL,
+    PRIMARY KEY (fanfic_id, relationship_id),
+    CONSTRAINT fk_fanfic_relationship_fanfic FOREIGN KEY (fanfic_id) REFERENCES fanfics (id) ON DELETE CASCADE,
+    CONSTRAINT fk_fanfic_relationship_relationship FOREIGN KEY (relationship_id) REFERENCES relationships (id) ON DELETE CASCADE
+);
+
+CREATE TABLE fanfic_warning (
+    fanfic_id INT NOT NULL,
+    warning_id INT NOT NULL,
+    PRIMARY KEY (fanfic_id, warning_id),
+    CONSTRAINT fk_fanfic_warning_fanfic FOREIGN KEY (fanfic_id) REFERENCES fanfics (id) ON DELETE CASCADE,
+    CONSTRAINT fk_fanfic_warning_warning FOREIGN KEY (warning_id) REFERENCES warnings (id) ON DELETE CASCADE
+);
+
+CREATE TABLE fanfic_category (
+    fanfic_id INT NOT NULL,
+    category_id INT NOT NULL,
+    PRIMARY KEY (fanfic_id, category_id),
+    CONSTRAINT fk_fanfic_category_fanfic FOREIGN KEY (fanfic_id) REFERENCES fanfics (id) ON DELETE CASCADE,
+    CONSTRAINT fk_fanfic_category_category FOREIGN KEY (category_id) REFERENCES categories (id) ON DELETE CASCADE
+);

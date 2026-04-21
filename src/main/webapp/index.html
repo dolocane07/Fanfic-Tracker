@@ -3,26 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador de contactos</title>
+    <title>AO3 Fanfic Tracker</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <main class="contenedor">
-        <section class="tarjeta">
-            <h1>Buscador de contactos</h1>
-            <p class="subtitulo">Aplicación Web con Jakarta EE, Fetch, JSON y MySQL</p>
+    <main class="layout">
+        <section class="hero">
+            <p class="eyebrow">AO3 Fanfic Tracker</p>
+            <h1>Guarda tus fanfics terminados y descubre tus patrones de lectura</h1>
+            <p class="intro">
+                Pega el link de un work de AO3 y la app recoge sus datos principales. Luego puedes guardar
+                el dia en que lo terminaste y tu puntuacion personal en estrellas.
+            </p>
+        </section>
 
-            <form id="formBuscador" class="buscador">
-                <input type="text" id="textoBusqueda" name="textoBusqueda" placeholder="Escribe un nombre..." required>
-                <button type="submit">Buscar</button>
+        <section class="panel">
+            <h2>Importar fanfic</h2>
+            <form id="formFanfic" class="grid-form">
+                <label class="campo campo-grande">
+                    <span>URL del fanfic</span>
+                    <input type="url" id="url" placeholder="https://archiveofourown.org/works/12345678" required>
+                </label>
+
+                <label class="campo">
+                    <span>Fecha en que lo terminaste</span>
+                    <input type="date" id="finishedDate" required>
+                </label>
+
+                <label class="campo">
+                    <span>Tu rating</span>
+                    <select id="userStars" required>
+                        <option value="5">5 estrellas</option>
+                        <option value="4">4 estrellas</option>
+                        <option value="3">3 estrellas</option>
+                        <option value="2">2 estrellas</option>
+                        <option value="1">1 estrella</option>
+                    </select>
+                </label>
+
+                <button class="boton-principal" type="submit">Guardar fanfic</button>
             </form>
 
             <div id="estado" class="estado"></div>
-            <div id="resultados" class="resultados"></div>
+        </section>
+
+        <section class="panel">
+            <div class="cabecera-seccion">
+                <h2>Biblioteca</h2>
+                <p id="contadorFanfics" class="contador"></p>
+            </div>
+            <div id="listaFanfics" class="lista-fanfics"></div>
+        </section>
+
+        <section class="panel">
+            <div class="cabecera-seccion">
+                <h2>Estadisticas</h2>
+                <p class="contador">Se activan al llegar a 10 fanfics</p>
+            </div>
+            <div id="stats" class="stats"></div>
         </section>
     </main>
 
     <script src="js/app.js"></script>
 </body>
 </html>
-

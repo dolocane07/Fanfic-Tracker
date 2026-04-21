@@ -2,115 +2,304 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --fondo: #f4ede4;
+    --panel: rgba(255, 250, 243, 0.92);
+    --linea: #d9c7af;
+    --texto: #2f241d;
+    --texto-suave: #6d5b4f;
+    --acento: #a2482f;
+    --acento-oscuro: #6f2f21;
+    --tag: #efe1d0;
+    --error: #9f2d2d;
+    --ok: #285b3d;
+    --sombra: 0 16px 40px rgba(63, 39, 23, 0.12);
 }
 
 body {
-    background: linear-gradient(135deg, #eef2ff, #f8fafc);
-    color: #1f2937;
     min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(162, 72, 47, 0.12), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(111, 47, 33, 0.18), transparent 30%),
+        linear-gradient(135deg, #efe2d0 0%, #f7f0e8 45%, #efe8dc 100%);
+    color: var(--texto);
+    font-family: Georgia, "Times New Roman", serif;
 }
 
-.contenedor {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-}
-
-.tarjeta {
-    width: 100%;
-    max-width: 760px;
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-h1 {
-    margin-bottom: 8px;
-    font-size: 2rem;
-}
-
-.subtitulo {
-    color: #6b7280;
-    margin-bottom: 24px;
-}
-
-.buscador {
+.layout {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 40px 0 56px;
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 24px;
 }
 
-.buscador input {
-    padding: 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 1rem;
+.hero,
+.panel {
+    background: var(--panel);
+    border: 1px solid rgba(217, 199, 175, 0.85);
+    border-radius: 24px;
+    box-shadow: var(--sombra);
+    backdrop-filter: blur(8px);
 }
 
-.buscador button {
-    padding: 14px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    background: #2563eb;
-    color: #ffffff;
+.hero {
+    padding: 36px;
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+    color: var(--acento);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.82rem;
     font-weight: bold;
+}
+
+.hero h1 {
+    max-width: 14ch;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    line-height: 0.95;
+    margin-bottom: 18px;
+}
+
+.intro {
+    max-width: 62ch;
+    color: var(--texto-suave);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.panel {
+    padding: 26px;
+}
+
+.panel h2 {
+    margin-bottom: 18px;
+    font-size: 1.8rem;
+}
+
+.cabecera-seccion {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: baseline;
+    margin-bottom: 18px;
+}
+
+.contador {
+    color: var(--texto-suave);
+}
+
+.grid-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 14px;
+    align-items: end;
+}
+
+.campo {
+    display: grid;
+    gap: 8px;
+}
+
+.campo-grande {
+    grid-column: span 1;
+}
+
+.campo span {
+    font-size: 0.95rem;
+    color: var(--texto-suave);
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    border: 1px solid var(--linea);
+    border-radius: 14px;
+    padding: 14px 16px;
+    background: #fffdf9;
+    color: var(--texto);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.boton-principal {
+    border: none;
+    border-radius: 14px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, var(--acento), var(--acento-oscuro));
+    color: #fff8f1;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.boton-principal:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(111, 47, 33, 0.25);
 }
 
 .estado {
     min-height: 24px;
-    margin-bottom: 12px;
-    color: #374151;
+    margin-top: 14px;
+    color: var(--ok);
 }
 
-.resultados {
+.lista-fanfics {
     display: grid;
-    gap: 12px;
+    gap: 16px;
 }
 
-.resultado {
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 16px;
-    background: #f9fafb;
+.fanfic-card {
+    border: 1px solid var(--linea);
+    border-radius: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
 }
 
-.resultado h2 {
-    font-size: 1.1rem;
+.fanfic-card__top {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 14px;
+}
+
+.fanfic-card h3 {
+    font-size: 1.45rem;
     margin-bottom: 6px;
 }
 
-.resultado p {
-    margin-bottom: 4px;
+.autor {
+    color: var(--texto-suave);
 }
 
-.vacio,
-.error {
-    padding: 14px;
-    border-radius: 12px;
+.stars {
+    color: var(--acento);
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
 }
 
-.vacio {
-    background: #fff7ed;
-    color: #9a3412;
+.meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 18px;
+    margin-bottom: 18px;
 }
 
-.error {
-    background: #fef2f2;
-    color: #b91c1c;
+.meta-grid a {
+    color: var(--acento-oscuro);
 }
 
-@media (max-width: 640px) {
-    .tarjeta {
-        padding: 20px;
+.tag-group + .tag-group {
+    margin-top: 14px;
+}
+
+.tag-title {
+    margin-bottom: 10px;
+    color: var(--texto-suave);
+    font-size: 0.95rem;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--tag);
+    border: 1px solid var(--linea);
+    font-size: 0.92rem;
+}
+
+.tag-empty {
+    color: var(--texto-suave);
+}
+
+.stats {
+    display: grid;
+    gap: 18px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.stat-card,
+.ranking-card,
+.mensaje {
+    border: 1px solid var(--linea);
+    border-radius: 18px;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.stat-card h3,
+.ranking-card h3 {
+    margin-bottom: 12px;
+}
+
+.stat-big {
+    font-size: 2rem;
+    color: var(--acento-oscuro);
+    font-weight: bold;
+}
+
+.stats-lists {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.ranking-card ol,
+.ranking-card ul {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+}
+
+.ranking-card li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: start;
+    border-top: 1px solid rgba(217, 199, 175, 0.65);
+    padding-top: 10px;
+}
+
+.ranking-card li:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.mensaje.neutro {
+    color: var(--texto-suave);
+}
+
+.mensaje.error {
+    color: var(--error);
+}
+
+@media (max-width: 920px) {
+    .grid-form,
+    .stats-lists,
+    .stats-grid,
+    .meta-grid {
+        grid-template-columns: 1fr;
     }
 
-    .buscador {
-        grid-template-columns: 1fr;
+    .fanfic-card__top,
+    .cabecera-seccion {
+        flex-direction: column;
     }
 }
