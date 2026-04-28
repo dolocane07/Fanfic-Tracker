@@ -227,7 +227,9 @@ function manejarClicksBiblioteca(evento) {
     if (toggleButton) {
         const card = toggleButton.closest('.fanfic-card');
         const expandida = card.classList.toggle('expanded');
-        toggleButton.textContent = expandida ? 'Ocultar detalles' : 'Ver detalles';
+        toggleButton.textContent = expandida ? '−' : '+';
+        toggleButton.setAttribute('aria-label', expandida ? 'Ocultar detalles' : 'Ver detalles');
+        toggleButton.setAttribute('title', expandida ? 'Ocultar detalles' : 'Ver detalles');
         return;
     }
 
@@ -324,11 +326,6 @@ function actualizarSesion(user) {
 }
 
 function renderFanfic(fanfic) {
-    const totalTags = (fanfic.warnings?.length || 0)
-        + (fanfic.relationships?.length || 0)
-        + (fanfic.fandoms?.length || 0)
-        + (fanfic.categories?.length || 0);
-
     return `
         <article class="fanfic-card" data-fanfic-id="${fanfic.id}">
             <div class="fanfic-card__top">
@@ -340,15 +337,14 @@ function renderFanfic(fanfic) {
 
                 <div class="fanfic-card__summary">
                     <div class="stars">${'★'.repeat(fanfic.userStars)}${'☆'.repeat(5 - fanfic.userStars)}</div>
-                    <button class="boton-ghost boton-ghost--small" type="button" data-action="toggle-details">Ver detalles</button>
+                    <button
+                        class="boton-ghost boton-ghost--icon"
+                        type="button"
+                        data-action="toggle-details"
+                        aria-label="Ver detalles"
+                        title="Ver detalles"
+                    >+</button>
                 </div>
-            </div>
-
-            <div class="fanfic-quick-grid">
-                <p><strong>Words</strong><span>${fanfic.wordCount.toLocaleString('es-ES')}</span></p>
-                <p><strong>Finished</strong><span>${escapeHtml(fanfic.finishedDate)}</span></p>
-                <p><strong>Tags</strong><span>${totalTags}</span></p>
-                <p><strong>Link</strong><span><a href="${escapeHtml(fanfic.ao3Url)}" target="_blank" rel="noopener noreferrer">Abrir</a></span></p>
             </div>
 
             <div class="fanfic-details">

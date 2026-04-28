@@ -431,6 +431,18 @@ body::before {
     border-radius: 14px;
 }
 
+.boton-ghost--icon {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
 .danger-button {
     border: 1px solid rgba(235, 111, 146, 0.3);
     background: rgba(104, 41, 67, 0.44);
@@ -495,7 +507,7 @@ body::before {
 
 .fanfic-card__summary {
     display: grid;
-    gap: 10px;
+    gap: 8px;
     justify-items: end;
 }
 
@@ -518,35 +530,6 @@ body::before {
     letter-spacing: 0.08em;
     white-space: nowrap;
     text-shadow: 0 0 18px rgba(156, 207, 216, 0.18);
-}
-
-.fanfic-quick-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-    margin-bottom: 4px;
-}
-
-.fanfic-quick-grid p {
-    display: grid;
-    gap: 4px;
-    padding: 12px 14px;
-    border-radius: 16px;
-    background: rgba(24, 23, 38, 0.42);
-    border: 1px solid rgba(144, 140, 170, 0.12);
-}
-
-.fanfic-quick-grid strong {
-    color: var(--muted);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.fanfic-quick-grid span,
-.fanfic-quick-grid a {
-    color: var(--text);
-    text-decoration: none;
 }
 
 .fanfic-details {
