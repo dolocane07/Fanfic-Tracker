@@ -375,6 +375,28 @@ body::before {
     z-index: 1;
 }
 
+.manual-import {
+    margin-top: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+.manual-form {
+    margin-top: 16px;
+    padding: 18px;
+    border-radius: 22px;
+    background: rgba(24, 23, 38, 0.58);
+    border: 1px solid rgba(144, 140, 170, 0.16);
+    display: grid;
+    gap: 16px;
+}
+
+.manual-form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
 .campo input,
 .campo select {
     width: 100%;
@@ -877,6 +899,7 @@ body::before {
     .auth-grid,
     .admin-grid,
     .grid-form,
+    .manual-form__grid,
     .fanfic-quick-grid,
     .edit-form__fields,
     .stats-lists,

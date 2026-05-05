@@ -8,6 +8,8 @@ const state = {
 };
 
 const formFanfic = document.getElementById('formFanfic');
+const manualForm = document.getElementById('manualForm');
+const toggleManualImport = document.getElementById('toggleManualImport');
 const urlInput = document.getElementById('url');
 const finishedDateInput = document.getElementById('finishedDate');
 const userStarsInput = document.getElementById('userStars');
@@ -32,6 +34,8 @@ const loginForm = document.getElementById('loginForm');
 registerForm.addEventListener('submit', manejarRegistro);
 loginForm.addEventListener('submit', manejarLogin);
 formFanfic.addEventListener('submit', guardarFanfic);
+manualForm.addEventListener('submit', guardarFanficManual);
+toggleManualImport.addEventListener('click', alternarModoManual);
 listaFanfics.addEventListener('click', manejarClicksBiblioteca);
 listaFanfics.addEventListener('submit', manejarEdicionFanfic);
 paginacionFanfics.addEventListener('click', manejarPaginacionBiblioteca);
@@ -161,6 +165,51 @@ async function guardarFanfic(evento) {
         await cargarBibliotecaCompleta();
     } catch (error) {
         estado.textContent = error.message;
+        mostrarModoManual();
+    }
+}
+
+async function guardarFanficManual(evento) {
+    evento.preventDefault();
+    estado.textContent = 'Guardando fanfic manualmente...';
+
+    try {
+        const { response, data } = await solicitar('/api/fanfics/manual', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                url: urlInput.value.trim(),
+                finishedDate: finishedDateInput.value,
+                userStars: Number(userStarsInput.value),
+                titulo: document.getElementById('manualTitulo').value.trim(),
+                autor: document.getElementById('manualAutor').value.trim(),
+                ao3Rating: document.getElementById('manualAo3Rating').value.trim(),
+                wordCount: Number(document.getElementById('manualWordCount').value || 0),
+                warnings: document.getElementById('manualWarnings').value.trim(),
+                relationships: document.getElementById('manualRelationships').value.trim(),
+                fandoms: document.getElementById('manualFandoms').value.trim(),
+                categories: document.getElementById('manualCategories').value.trim()
+            })
+        });
+
+        if (!response.ok || !data.ok) {
+            throw new Error(data.detalle || data.mensaje || 'No se pudo guardar el fanfic manualmente');
+        }
+
+        estado.textContent = `Fanfic guardado: ${data.fanfic.titulo}`;
+        formFanfic.reset();
+        manualForm.reset();
+        manualForm.classList.add('hidden');
+        toggleManualImport.textContent = 'Usar modo manual';
+        finishedDateInput.valueAsDate = new Date();
+        userStarsInput.value = '5';
+        document.getElementById('manualWordCount').value = '0';
+
+        await cargarBibliotecaCompleta();
+    } catch (error) {
+        estado.textContent = error.message;
     }
 }
 
@@ -272,6 +321,17 @@ function manejarPaginacionBiblioteca(evento) {
 
     state.currentPage = Number(pageButton.dataset.page);
     renderPaginaBiblioteca();
+}
+
+function alternarModoManual() {
+    const visible = !manualForm.classList.contains('hidden');
+    manualForm.classList.toggle('hidden', visible);
+    toggleManualImport.textContent = visible ? 'Usar modo manual' : 'Ocultar modo manual';
+}
+
+function mostrarModoManual() {
+    manualForm.classList.remove('hidden');
+    toggleManualImport.textContent = 'Ocultar modo manual';
 }
 
 function manejarClicksAdmin(evento) {

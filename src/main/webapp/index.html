@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/estilos.css?v=13">
-    <script src="/js/app.js?v=11" defer></script>
+    <link rel="stylesheet" href="/css/estilos.css?v=14">
+    <script src="/js/app.js?v=12" defer></script>
 </head>
 <body>
     <div class="page-glow page-glow--left"></div>
@@ -147,6 +147,56 @@
                 </form>
 
                 <div id="estado" class="estado"></div>
+
+                <div class="manual-import">
+                    <button id="toggleManualImport" class="boton-ghost" type="button">Usar modo manual</button>
+
+                    <form id="manualForm" class="manual-form hidden">
+                        <div class="manual-form__grid">
+                            <label class="campo">
+                                <span>Titulo</span>
+                                <input type="text" id="manualTitulo" required>
+                            </label>
+
+                            <label class="campo">
+                                <span>Autor</span>
+                                <input type="text" id="manualAutor" required>
+                            </label>
+
+                            <label class="campo">
+                                <span>AO3 rating</span>
+                                <input type="text" id="manualAo3Rating" placeholder="Explicit, Teen, Mature..." required>
+                            </label>
+
+                            <label class="campo">
+                                <span>Word count</span>
+                                <input type="number" id="manualWordCount" min="0" value="0" required>
+                            </label>
+
+                            <label class="campo campo-grande">
+                                <span>Warnings</span>
+                                <input type="text" id="manualWarnings" placeholder="Separados por comas">
+                            </label>
+
+                            <label class="campo campo-grande">
+                                <span>Parejas</span>
+                                <input type="text" id="manualRelationships" placeholder="Separadas por comas">
+                            </label>
+
+                            <label class="campo campo-grande">
+                                <span>Fandoms</span>
+                                <input type="text" id="manualFandoms" placeholder="Separados por comas">
+                            </label>
+
+                            <label class="campo campo-grande">
+                                <span>Categorias</span>
+                                <input type="text" id="manualCategories" placeholder="Separadas por comas">
+                            </label>
+                        </div>
+
+                        <button class="boton-principal" type="submit">Guardar manualmente</button>
+                    </form>
+                </div>
             </section>
 
             <section class="panel shell" id="biblioteca">
