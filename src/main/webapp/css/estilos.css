@@ -1082,7 +1082,7 @@ select:focus-visible {
 .footer {
     padding: 1.25rem 1.5rem;
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1.5fr) auto;
     gap: 1.125rem;
     align-items: start;
     background: rgba(24, 23, 38, 0.88);
@@ -1090,7 +1090,7 @@ select:focus-visible {
 }
 
 .footer__brand,
-.footer__group {
+.footer__nav {
     position: relative;
     z-index: 1;
 }
@@ -1100,17 +1100,12 @@ select:focus-visible {
     margin-bottom: 0.25rem;
 }
 
-.footer__heading {
-    color: var(--foam);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.76rem;
-    margin-bottom: 0.875rem;
-}
-
-.footer__group {
-    display: grid;
-    gap: 0.625rem;
+.footer__nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .footer__link {
@@ -1119,9 +1114,23 @@ select:focus-visible {
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
+.footer__link--primary {
+    padding: 0.75rem 1rem;
+    border-radius: 999rem;
+    border: 0.0625rem solid rgba(144, 140, 170, 0.16);
+    background: rgba(57, 53, 82, 0.36);
+    color: var(--text);
+    font-weight: 700;
+}
+
 .footer__link:hover {
     color: var(--foam);
     transform: translateX(0.125rem);
+}
+
+.footer__link--primary:hover {
+    transform: translateY(-0.0625rem);
+    background: rgba(62, 143, 176, 0.16);
 }
 
 @media (max-width: 67.5rem) {
