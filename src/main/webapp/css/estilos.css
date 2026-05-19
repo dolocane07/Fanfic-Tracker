@@ -1105,6 +1105,8 @@ select:focus-visible {
     justify-content: flex-start;
     flex-wrap: wrap;
     margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 0.0625rem solid rgba(144, 140, 170, 0.14);
 }
 
 .footer__link {
@@ -1114,13 +1116,15 @@ select:focus-visible {
 }
 
 .footer__link--primary {
-    padding: 0.25rem 0;
+    padding: 0;
     border-radius: 0;
     border: 0;
     background: transparent;
-    color: var(--foam);
-    font-weight: 700;
-    letter-spacing: 0.01em;
+    color: var(--subtle);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .footer__link:hover {
