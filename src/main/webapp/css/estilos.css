@@ -351,6 +351,75 @@ body::before {
     margin-top: 1rem;
 }
 
+.info-page {
+    padding: 2rem;
+}
+
+.info-page__hero,
+.info-page__grid,
+.info-page__stack {
+    position: relative;
+    z-index: 1;
+}
+
+.info-page__hero {
+    max-width: 44rem;
+    margin-bottom: 1.25rem;
+}
+
+.info-page__hero h1,
+.info-card h2 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    letter-spacing: 0.01em;
+}
+
+.info-page__hero h1 {
+    font-size: clamp(2.8rem, 5vw, 4.1rem);
+    line-height: 0.96;
+    margin-bottom: 0.875rem;
+}
+
+.info-page__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.info-page__stack {
+    display: grid;
+    gap: 1rem;
+}
+
+.info-card {
+    padding: 1.25rem;
+    border-radius: 1.375rem;
+    background: rgba(24, 23, 38, 0.62);
+    border: 0.0625rem solid rgba(144, 140, 170, 0.18);
+}
+
+.info-card__eyebrow {
+    color: var(--foam);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.76rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-card h2 {
+    font-size: 1.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.info-card p {
+    color: var(--subtle);
+    line-height: 1.65;
+}
+
+.info-card__link {
+    display: inline-flex;
+    margin-top: 1rem;
+}
+
 .highlight-card,
 .auth-card,
 .stat-card,
@@ -1067,6 +1136,7 @@ select:focus-visible {
 
     .hero__content,
     .hero__highlights,
+    .info-page__grid,
     .footer,
     .auth-grid,
     .admin-grid,
@@ -1090,6 +1160,7 @@ select:focus-visible {
     .topbar,
     .archive-banner,
     .hero,
+    .info-page,
     .panel,
     .auth-shell {
         padding: 1.125rem;
