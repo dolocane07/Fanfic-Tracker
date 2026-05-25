@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ejemplo</groupId>
-    <artifactId>ao3-fanfic-tracker</artifactId>
+    <artifactId>fanfic-tracker</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
 
@@ -43,7 +43,7 @@
     </dependencies>
 
     <build>
-        <finalName>ao3-fanfic-tracker</finalName>
+        <finalName>fanfic-tracker</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

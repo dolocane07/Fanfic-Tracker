@@ -1,4 +1,4 @@
-# AO3 Fanfic Tracker
+# fanfic-tracker
 
 Aplicacion Jakarta EE para guardar fanfics de AO3, gestionarlos por usuario y consultar estadisticas basicas. Incluye:
 
@@ -17,11 +17,3 @@ Aplicacion Jakarta EE para guardar fanfics de AO3, gestionarlos por usuario y co
 - `src/main/java/com/ejemplo/util`: utilidades comunes
 - `src/main/webapp`: frontend
 - `mysql/init/01-bd1.sql`: base inicial para MySQL
-
-## Limpieza aplicada
-
-Se eliminaron capas intermedias `*Model` que solo reenviaban llamadas entre servlets y DAO, ademas de artefactos generados y restos de un proyecto anterior. El comportamiento esperado de la app se mantiene, pero con menos archivos y menos indirecciones.
-
-## Ejecucion
-
-Construye el WAR con Maven y levanta la app con tu flujo habitual de Docker Compose o despliegue Jakarta EE.

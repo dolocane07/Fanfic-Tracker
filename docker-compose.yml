@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: jakartaee_app
+    container_name: fanfic_tracker_app
     ports:
       - "8080:8080"
     depends_on:
@@ -20,7 +20,7 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: mysql_bd1
+    container_name: fanfic_tracker_mysql
     restart: unless-stopped
     ports:
       - "3307:3306"
@@ -40,7 +40,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:latest
-    container_name: phpmyadmin_bd1
+    container_name: fanfic_tracker_phpmyadmin
     restart: unless-stopped
     ports:
       - "8081:80"
@@ -56,7 +56,9 @@ services:
 
 volumes:
   mysql_data:
+    name: jakartaee-docker-compose-project_mysql_data
 
 networks:
   red_app:
+    name: jakartaee-docker-compose-project_red_app
     driver: bridge
